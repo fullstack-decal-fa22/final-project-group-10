@@ -16,6 +16,20 @@ function App() {
       .catch(() => setExpressCheck("Currently down."));
   }, []);
 
+  function getIngredients() {
+    axios.get(`http://www.themealdb.com/api/json/v1/1/list.php?i=list`, {timeout: 10 * 1000}).then((body) => {
+		console.log("Ingredients: ", body.data);
+	}, (err) => {
+		console.log("Error: ", err);
+	});
+
+  }
+  function getMeal(i1, i2, i3) {
+
+
+  }
+  getIngredients();
+
   return (
     <div className="App">
       <header className="App-header">
@@ -37,7 +51,7 @@ function App() {
                 Express
               </a>{" "}
               is a Node.js web app framework. To create new routes, add files to api/routes. Feel free to use testAPI.js (which is where "Working properly" is being pulled from) as a reference
-            </p>
+          </p>
           
             <div className="flex gap-2 text-center justify-center">
               <p className="text-sm font-bold">Express Status:</p>
@@ -64,6 +78,11 @@ function App() {
               is an in-browser styler for your Tailwind classes. Command-Click on any component you see on your screen to pull up Vivid's code pane. Then hit Command-K to bring up the command palette. 
             </p>
           </div>
+          {/* <h3 className="header3">Concert</h3>
+                        <datalist id = "suggestions">
+                            {concertNames.map((name) => <option onClick={"() => setInstance(name)"}>{name}</option>)}
+                        </datalist>
+                        <input id="concert-instance" type="text" autoComplete="on" list="suggestions" onInput={() => handleChange()}></input> */}
         </div>
       </header>
     </div>
