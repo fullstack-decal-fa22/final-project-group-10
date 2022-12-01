@@ -2,19 +2,24 @@ import logo from "./logo.svg";
 import "./App.css";
 import axios from "axios";
 import React, { useState, useEffect } from "react";
+import InputIngredient from "./Components/InputIngredient";
 
 function App() {
   const [expressCheck, setExpressCheck] = useState("");
   const [ingreditentNames, setIngredientNames] = useState([]);
-
+  const [ingr1, setIngr1] = useState('');
+  const [ingr2, setIngr2] = useState('');
+  const [ingr3, setIngr3] = useState('');
 
   function getIngredients() {
     axios.get(`http://www.themealdb.com/api/json/v1/1/list.php?i=list`, {timeout: 10 * 1000}).then((body) => {
       setIngredientNames(body.data.meals.map((elem) => {return elem.strIngredient}));
+      console.log(body.data.meals)
 	}, (err) => {
 		console.log("Error: ", err);
 	});
   }
+
 
   useEffect(() => {
     axios
@@ -25,14 +30,24 @@ function App() {
       })
       .catch(() => setExpressCheck("Currently down."));
       getIngredients();
+      console.log(ingreditentNames)
   }, []);
 
-  console.log("Ingredients: ", ingreditentNames);
-  function handleChange() {
-    let instanceInput = document.getElementById("ingredientSelect").value;
-    console.log("this ingredient got selected", instanceInput);
+  useEffect(() => {
+    console.log("this ingredient got selected for 1: ", ingr1);
+    console.log("this ingredient got selected for 2: ", ingr2);
+    console.log("this ingredient got selected for 3: ", ingr3);
+
+
+  }, [ingr1, ingr2, ingr3]);
+
+  // console.log("Ingredients: ", ingreditentNames);
+  function helllo() {
+    console.log("hello")
   }
-  function getMeal(i1, i2, i3) {
+
+
+  function getMeal(ingr1, ingr2, ingr3) {
 
 
   }
@@ -40,8 +55,8 @@ function App() {
   return (
     <div className="App">
       <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <div className="grid grid-cols-1 md:grid-cols-2 md:grid-rows-2 w-2/3 md:w-1/2 gap-4">
+        {/* <img src={logo} className="App-logo" alt="logo" /> */}
+        {/* <div className="grid grid-cols-1 md:grid-cols-2 md:grid-rows-2 w-2/3 md:w-1/2 gap-4"> */}
           {/* <div className="border rounded border-gray-500 bg-slate-700 p-4">
             <h1>React</h1>
             <p className="text-lg">
@@ -85,14 +100,17 @@ function App() {
               is an in-browser styler for your Tailwind classes. Command-Click on any component you see on your screen to pull up Vivid's code pane. Then hit Command-K to bring up the command palette. 
             </p>
           </div> */}
-          <h3 className="header3">protein</h3>
+          {/* <h3 className="header3">protein</h3>
           <datalist id = "suggestions">
             {ingreditentNames.map((name) => <option onClick={"() => setInstance(name)"}>{name}</option>)}
           </datalist>
           <input id="ingredientSelect" type="text" autoComplete="on" list="suggestions" onInput={() => handleChange()}></input>
-          <input id="dunno" type="text" onInput={console.log("Hello")}></input>
+          <input id="dunno" type="text" onInput={console.log("Hello")}></input> */}
 
-        </div>
+        {/* </div> */}
+        <InputIngredient ingredients = {ingreditentNames} title = "1st" addIngr = {setIngr1} currIngr = {ingr1}></InputIngredient>
+        <InputIngredient ingredients = {ingreditentNames} title = "2nd" addIngr = {setIngr2} currIngr = {ingr2}></InputIngredient>
+        <InputIngredient ingredients = {ingreditentNames} title = "3rd" addIngr = {setIngr3} currIngr = {ingr3}></InputIngredient>
       </header>
     </div>
   );

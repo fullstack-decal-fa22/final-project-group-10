@@ -37,3 +37,13 @@
     transform: rotate(360deg);
   }
 }
+
+#ingredientSelect1st {
+  color: black;
+}
+#ingredientSelect2nd {
+  color: black;
+}
+#ingredientSelect3rd {
+  color: black;
+}
