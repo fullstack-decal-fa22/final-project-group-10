@@ -7,6 +7,7 @@ import InputIngredient from "./Components/InputIngredient";
 function App() {
   const [expressCheck, setExpressCheck] = useState("");
   const [ingreditentNames, setIngredientNames] = useState([]);
+  const [meals, setMeals] = useState([]);
   const [ingr1, setIngr1] = useState('');
   const [ingr2, setIngr2] = useState('');
   const [ingr3, setIngr3] = useState('');
@@ -37,19 +38,17 @@ function App() {
     console.log("this ingredient got selected for 1: ", ingr1);
     console.log("this ingredient got selected for 2: ", ingr2);
     console.log("this ingredient got selected for 3: ", ingr3);
-
-
+    getMeal(ingr1, ingr2, ingr3)
+    console.log("Meals output:", meals);
   }, [ingr1, ingr2, ingr3]);
 
-  // console.log("Ingredients: ", ingreditentNames);
-  function helllo() {
-    console.log("hello")
-  }
-
-
   function getMeal(ingr1, ingr2, ingr3) {
-
-
+    axios.get(`http://www.themealdb.com/api/json/v1/1/filter.php?i=${ingr2}`, {timeout: 10 * 1000}).then((body) => {
+      setMeals(body.data.meals.map((elem) => {return elem.strMeal}));
+      console.log("data:", body.data)
+	}, (err) => {
+		console.log("Error: ", err);
+	});
   }
 
   return (
