@@ -4,9 +4,9 @@ import "../App.css"
 function OneMeal(props) {
     return (
         <div className = "meal1">
-            <h3 className="header3">{props.mealName}</h3>
-            <img classNmae="mealImageLink" src={props.image}></img>
-            <div className="mealDescription">{props.description}</div>
+            <h3 className="mealName">{props.mealName}</h3>
+            <img className="mealImage" src={props.image}></img>
+            {/* <div className="mealDescription">{props.description}</div> */}
         </div>
     );
 

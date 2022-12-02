@@ -6,7 +6,7 @@ function Showmeals(props) {
     if (props.meals.length > 0) {
         console.log(props.meals[0]);
         return (
-            <div className = "ingredientDiv">
+            <div className = "mealDiv">
                 {props.meals.map((elem) => <OneMeal mealName ={elem.strMeal} image = {elem.strMealThumb} description = "this description"></OneMeal>)}
             </div>
         );
