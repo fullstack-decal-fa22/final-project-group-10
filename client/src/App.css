@@ -176,7 +176,7 @@ h1 {
 }
 .mealName {
   display: flex;
-  font-size: large;
+  font-size: 80%;
   font-weight: 400;
   width: 70%;
   align-items: center;
@@ -184,12 +184,22 @@ h1 {
 .mealImage {
   border-radius: 8px;
 	width: 50%;
-  /* padding-bottom: 10%; */
 }
 .ingrDiv {
   display: flex;
   flex-direction: column;
   align-items: center;
   padding-bottom: 20vh;
-  
+}
+
+.generateMeals {
+    background-color: yellowgreen; /* Green */
+    border: none;
+    color: white;
+    padding: 15px 32px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin-top: 5%;
 }

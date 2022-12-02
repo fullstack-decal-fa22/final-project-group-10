@@ -6,10 +6,6 @@ import InputIngredient from "./Components/InputIngredient";
 import NavBarContainer from "./Components/navbar";
 import Showmeals from "./Components/Showmeals";
 
-// var cors = require("cors");
-// var app = express();
-// app.use(cors());
-
 function App() {
   const [expressCheck, setExpressCheck] = useState("");
   const [ingreditentNames, setIngredientNames] = useState([]);
@@ -44,16 +40,15 @@ function App() {
     console.log("this ingredient got selected for 1: ", ingr1);
     console.log("this ingredient got selected for 2: ", ingr2);
     console.log("this ingredient got selected for 3: ", ingr3);
-    getMeal(ingr1, ingr2, ingr3)
+    // getMeal(ingr1, ingr2, ingr3)
     console.log("Meals output:", meals);
   }, [ingr1, ingr2, ingr3]);
 
   function getMeal(ingr1, ingr2, ingr3) {
-    axios.get(`http://www.themealdb.com/api/json/v1/1/filter.php?i=${ingr2}&i=${ingr1}&i=${ingr3}`, {timeout: 10 * 1000}).then((body) => {
+    axios.get(`http://www.themealdb.com/api/json/v1/1/filter.php?i=${ingr1}&i=${ingr2}&i=${ingr3}`, {timeout: 10 * 1000}).then((body) => {
       setMeals(body.data.meals);
       console.log("data:", body.data)
 	}, (err) => {
-    
 		console.log("Error: ", err);
 	});
   }
@@ -81,12 +76,10 @@ function App() {
           <div className="ingrDiv">
           <InputIngredient ingredients = {ingreditentNames} title = "1st" addIngr = {setIngr1} currIngr = {ingr1}></InputIngredient>
         <InputIngredient ingredients = {ingreditentNames} title = "2nd" addIngr = {setIngr2} currIngr = {ingr2}></InputIngredient>
-        <InputIngredient ingredients = {ingreditentNames} title = "3rd" addIngr = {setIngr3} currIngr = {ingr3}></InputIngredient>
-      
-
-
+        <InputIngredient className="lastingr"ingredients = {ingreditentNames} title = "3rd" addIngr = {setIngr3} currIngr = {ingr3}></InputIngredient>
+        <button className = "generateMeals"onClick={() => getMeal(ingr1, ingr2, ingr3)}>Generate Recipe!</button>
           </div>
-
+          
           <div id="showMeals">
             <Showmeals meals={meals}></Showmeals>
           </div>
