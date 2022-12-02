@@ -1,4 +1,4 @@
-.App {
+/* .App {
   text-align: center;
 }
 
@@ -13,18 +13,6 @@
   }
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
-  padding-bottom: 100%;
-}
-
 .App-link {
   color: #61dafb;
 }
@@ -36,8 +24,18 @@
   to {
     transform: rotate(360deg);
   }
+} */
+.App-header {
+  background-color: #D1DBBD;
+  min-height: 100vh;
+  /* display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-size: calc(10px + 2vmin);
+  color: white;
+  padding-bottom: 100%; */
 }
-
 #ingredientSelect1st {
   color: black;
 }
@@ -46,4 +44,98 @@
 }
 #ingredientSelect3rd {
   color: black;
+}
+/* #navBar {
+  padding: 100vh;
+} */
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@500&display=swap');
+
+
+* {
+  font-family: 'Roboto';
+  scroll-behavior: smooth;
+  font-size: 22px;
+}
+#navBar {
+  display: flex;
+  flex-direction: row;
+  position: sticky;
+  top: 0;
+  background-color: #6FA067;
+  justify-content: space-between;
+
+  /* margin: 300px, 0px, 0px, 300px; */
+}
+.title {
+  display: flex;
+  align-items: center;
+  align-content: center;
+  padding-left: 2vw;
+
+}
+
+ul {
+  /* margin: 300pxs, 0px, 0px, 300px; */
+  /* display: flex; */
+  /* align-items: flex-end; */
+  list-style-type: none;
+  margin-left: 500px;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+  /* position: fixed; */
+
+}
+li {
+  float: right;
+}
+a {
+  display: block;
+  padding: 8px;
+  background-color: #D1DBBD;
+}
+li a {
+  display: block;
+  text-align: center;
+  margin: 2vh 2vw 2vh;
+  /* margin-top: 30px; */
+  /* margin: 500px, 0px, 500px, 0px; */
+  padding: 15px 30px 15px 30px;
+  border-radius: 15px;
+  text-decoration: none;
+  color: black;
+  /* margin-right: 20px; */
+}
+li a:hover{
+  background-color: black;
+  color: white;
+}
+.leftHome {
+  /* padding-top: 10vh;
+  padding-bottom: 10vh;
+  padding-right: 10vw;
+  padding-left: 10vw; */
+  display: flex;
+  width: 30vw;
+  height: 40vh;
+  border-radius: 30px;
+  background-color: white;
+  justify-content: center;
+}
+.rightHome{
+  max-width: 20vw;
+  /* height: 20vh; */
+
+}
+.bigText {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+}
+#Home {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  height: 80vh;
+  align-items: center;
 }

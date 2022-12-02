@@ -3,6 +3,8 @@ import "./App.css";
 import axios from "axios";
 import React, { useState, useEffect } from "react";
 import InputIngredient from "./Components/InputIngredient";
+import NavBarContainer from "./Components/navbar";
+import Showmeals from "./Components/Showmeals";
 
 function App() {
   const [expressCheck, setExpressCheck] = useState("");
@@ -13,7 +15,7 @@ function App() {
   const [ingr3, setIngr3] = useState('');
 
   function getIngredients() {
-    axios.get(`http://www.themealdb.com/api/json/v1/1/list.php?i=list`, {timeout: 10 * 1000}).then((body) => {
+    axios.get(`http://www.themealdb.com/api/json/v1/1/list.php?i=list&Access-Control-Allow-Origin=*`, {timeout: 10 * 1000}).then((body) => {
       setIngredientNames(body.data.meals.map((elem) => {return elem.strIngredient}));
       console.log(body.data.meals)
 	}, (err) => {
@@ -44,7 +46,7 @@ function App() {
 
   function getMeal(ingr1, ingr2, ingr3) {
     axios.get(`http://www.themealdb.com/api/json/v1/1/filter.php?i=${ingr2}`, {timeout: 10 * 1000}).then((body) => {
-      setMeals(body.data.meals.map((elem) => {return elem.strMeal}));
+      setMeals(body.data.meals);
       console.log("data:", body.data)
 	}, (err) => {
 		console.log("Error: ", err);
@@ -54,6 +56,7 @@ function App() {
   return (
     <div className="App">
       <header className="App-header">
+        <navBar></navBar>
         {/* <img src={logo} className="App-logo" alt="logo" /> */}
         {/* <div className="grid grid-cols-1 md:grid-cols-2 md:grid-rows-2 w-2/3 md:w-1/2 gap-4"> */}
           {/* <div className="border rounded border-gray-500 bg-slate-700 p-4">
@@ -107,10 +110,38 @@ function App() {
           <input id="dunno" type="text" onInput={console.log("Hello")}></input> */}
 
         {/* </div> */}
-        <InputIngredient ingredients = {ingreditentNames} title = "1st" addIngr = {setIngr1} currIngr = {ingr1}></InputIngredient>
+        <NavBarContainer></NavBarContainer>
+        <div id="Home">
+          <div className= "leftHome">
+          <div className="bigText">
+            <div className="nametxt">Website Name</div>
+            <div className="slogan">Some Slogan</div>
+          </div>
+          </div>
+          <div className="rightHome">
+            <img src="https://png.pngtree.com/png-vector/20221020/ourmid/pngtree-sandwich-illustration-png-image_6357278.png"></img>
+          </div>
+        </div>
+        <div className="arrow">
+            
+        </div>
+        <div id='meal'>
+          <div className="ingrDiv">
+          <InputIngredient ingredients = {ingreditentNames} title = "1st" addIngr = {setIngr1} currIngr = {ingr1}></InputIngredient>
         <InputIngredient ingredients = {ingreditentNames} title = "2nd" addIngr = {setIngr2} currIngr = {ingr2}></InputIngredient>
         <InputIngredient ingredients = {ingreditentNames} title = "3rd" addIngr = {setIngr3} currIngr = {ingr3}></InputIngredient>
-      </header>
+      
+
+
+          </div>
+
+          <div id="showMeals">
+            <Showmeals meals={meals}></Showmeals>
+          </div>
+
+
+        </div>
+        </header>
     </div>
   );
 }
